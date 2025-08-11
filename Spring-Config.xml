@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+
+<!-- 
+-->
+	
+<beans>
+
+	<bean class="Lec_30.Student" id="student" scope="prototype">
+		<property name="name" value="Ritik"></property>
+		<property name="rollnumber" value="1"></property>
+		<property name="courses" >
+			<list>
+				<value>apc</value>
+				<value>adi</value>
+				<value>bee</value>
+				<value>nalr</value>
+			</list>
+		</property>
+		<property name="Trainer_Course_Mapping">
+			<map>
+				<entry key="ritik" value="apc"></entry>
+				<entry key="nitesh" value="bee"></entry>
+			</map>
+		</property>
+		
+		<property name="laptop" ref="laptop"></property>
+		
+		<property name="address" ref="address"></property>
+	</bean>
+	
+	
+	<bean class="Lec_30.Laptop" id="laptop" scope="prototype">
+		<property name="make_and_modle" value="Lenovo Thinkpad X1 Carbonn"></property>
+		<property name="p" ref="processor"></property>
+		<property name="ram" value="16"></property>
+		
+	</bean>
+	
+	<bean class="Lec_30.Address" id="address">
+		<property name="street" value="house no 1231"></property>
+		<property name="city" value="Faridabad"></property>
+		<property name="State" value="Haryana"></property>
+	</bean>
+	<bean class="Lec_30.Processor" id="processor">
+		<property name="name" value="intel i7"></property>
+		<property name="cores" value="8"></property>
+		<property name="clockspeed" value="3"></property>
+	
+	</bean>
+	
+
+</beans>
+<!-- 
+	
+<beans>
+	<bean class="Lec_30.Student" id="student">
+		<constructor-arg index="0" value="Ritik"></constructor-arg>
+		<constructor-arg index="1" value="10"></constructor-arg>
+		<constructor-arg index="2" >
+			<list>
+				<value>apc</value>
+				<value>adi</value>
+				<value>bee</value>
+				<value>nalr</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg index="3">
+			<map>
+				<entry key="ritik" value="apc"></entry>
+				<entry key="nitesh" value="bee"></entry>
+			</map>
+		</constructor-arg>
+		<constructor-arg index="4" ref="laptop"></constructor-arg>
+		<constructor-arg index="5" ref="address"></constructor-arg>
+	</bean>
+</beans>
+
+
+-->
