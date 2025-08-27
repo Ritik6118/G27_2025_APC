@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-configuration PUBLIC  
+   "-//Hibernate/Hibernate Configuration DTD 5.3//EN"  
+   "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">  
+
+<hibernate-configuration>
+<session-factory>
+<property name="hibernate.connection.driverClassName">com.mysql.cj.jdbc.Driver</property>
+<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/G27_db</property>
+<property name="hibernate.connection.username">root</property>
+<property name="hibernate.connection.password">root</property>
+<property name="hibernate.connection.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+<property name="show-sql">true</property>
+<property name="hbm2ddl.auto">update</property>
+<mapping class="Entity.Student" ></mapping>
+<mapping class="Entity.Question" ></mapping>
+<mapping class="Entity.Answer" ></mapping>
+<mapping class="Entity.Project" ></mapping>
+<mapping class="Entity.Employee" ></mapping>
+<mapping class="Entity.User" ></mapping>
+</session-factory>
+</hibernate-configuration>
