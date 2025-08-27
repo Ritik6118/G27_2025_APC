@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="driver">
+		<constructor-arg index="0" value="jdbc:mysql://127.0.0.1:3306/G27_db"></constructor-arg>
+		<constructor-arg index="1" value="root"></constructor-arg>
+		<constructor-arg index="2" value="root"></constructor-arg>
+	</bean>
+
+	<bean class="org.springframework.jdbc.core.JdbcTemplate" id="template">
+		<constructor-arg index="0" ref="driver"></constructor-arg>
+	</bean>
+	
+	<bean class="Dao.Student_Dao_JDBC" id="student_dao">
+		<property name="jt" ref="template"></property>
+	</bean>
+	
+</beans>
