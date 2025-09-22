@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+		https://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- bean definitions here -->
+    
+    <bean class="Controller.My_Controller" id="mycontroller">
+    	<property name="ud" ref="userdao"></property>
+    </bean>
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="viewresolver">
+		<property name="prefix" value="WEB-INF/Views/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<bean class="Dao.Student_Dao_Hibernate" id="studentdao">
+		<property name="ht" ref="template"></property>
+	</bean>
+	<bean class="Dao.User_Dao_Hibernate" id="userdao">
+		<property name="ht" ref="template"></property>
+	</bean>
+	
+	<bean class="org.springframework.orm.hibernate5.HibernateTemplate" id="template">
+		<property name="sessionFactory" ref="sessionfactory"></property>
+	</bean>
+	
+	<bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" id="sessionfactory">
+		<property name="dataSource" ref="datasource"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
+				<prop key="hibernate.show-sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		
+		<property name="packagesToScan" value="Entity"></property>
+	</bean>
+	
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="datasource"> 
+		 <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/G27_db"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+		<!-- 
+		<constructor-arg index="0" value="jdbc:mysql://127.0.0.1:3306/G27_db"></constructor-arg> 
+		<constructor-arg index="1" value="root"></constructor-arg> 
+		<constructor-arg index="2" value="root"></constructor-arg> 
+		 -->
+	</bean>
+	
+	<bean class="org.springframework.orm.hibernate5.HibernateTransactionManager" id="transactionmanager">
+		<property name="sessionFactory" ref="sessionfactory"></property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionmanager"/> 
+
+</beans>
